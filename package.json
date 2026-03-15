@@ -1,0 +1,23 @@
+{
+  "name": "@arthur-lobo/zod-env",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "zod"
+  ],
+  "license": "MIT",
+  "author": "Arthur Lobo",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.0"
+  }
+}
