@@ -16,15 +16,15 @@
   },
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "require": "./dist/index.cjs",
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "import": "./dist/index.js"
     }
   },
   "scripts": {
     "test": "vitest --run",
     "build": "tsup",
-    "prepack": "build"
+    "prepack": "npm run build"
   },
   "files": [
     "dist"
