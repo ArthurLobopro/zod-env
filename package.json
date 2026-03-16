@@ -1,6 +1,6 @@
 {
   "name": "@arthur-lobo/zod-env",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "load and validate your env with zod.",
   "keywords": [
     "zod",
