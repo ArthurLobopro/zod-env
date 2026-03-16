@@ -21,6 +21,7 @@
       "import": "./dist/index.js"
     }
   },
+  "types": "./dist/index.d.ts",
   "scripts": {
     "test": "vitest --run",
     "build": "tsup",
