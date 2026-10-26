@@ -35,8 +35,8 @@
   },
   "devDependencies": {
     "@types/node": "^25.9.9",
-    "tsup": "^8.5.1",
-    "typescript": "^7.0.0",
+    "tsup": "^9.0.0",
+    "typescript": "^6.0.0",
     "vitest": "^4.1.12",
     "zod": "^4.6.7"
   },
