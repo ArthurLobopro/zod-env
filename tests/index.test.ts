@@ -83,4 +83,57 @@ describe("Async Tests", () => {
 
         expect(await env.get("SUPERSECRET_WORD")).toBe("catapimbas");
     });
+
+    it("Should call getEnv only after loadEnv resolves", async () => {
+        const calls: string[] = [];
+
+        const env = new AsyncZodEnv({
+            schema: firstSchema,
+            loadEnv: async () => {
+                calls.push("loadEnv:start");
+                await delay(100);
+                calls.push("loadEnv:end");
+            },
+            getEnv: async () => {
+                calls.push("getEnv");
+                return { foo: "bar", bar: 7 };
+            }
+        });
+
+        await env.env;
+
+        expect(calls).toEqual(["loadEnv:start", "loadEnv:end", "getEnv"]);
+    });
+
+    it("Should see variables set by loadEnv", async () => {
+        const source: Record<string, string> = {};
+
+        const env = new AsyncZodEnv({
+            schema: firstSchema,
+            loadEnv: () => delay(100).then(() => {
+                source.foo = "baz";
+                source.bar = "42";
+            }),
+            getEnv: async () => ({ ...source })
+        });
+
+        expect(await env.get("foo")).toBe("baz");
+        expect(await env.get("bar")).toBe(42);
+    });
+
+    it("Should not call getEnv when loadEnv rejects", async () => {
+        let getEnvCalled = false;
+
+        const env = new AsyncZodEnv({
+            schema: firstSchema,
+            loadEnv: () => delay(100).then(() => { throw new Error("load failed"); }),
+            getEnv: async () => {
+                getEnvCalled = true;
+                return { foo: "bar", bar: 7 };
+            }
+        });
+
+        await expect(env.env).rejects.toThrow("load failed");
+        expect(getEnvCalled).toBe(false);
+    });
 });
