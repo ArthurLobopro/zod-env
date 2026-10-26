@@ -5,8 +5,12 @@ A TypeScript library for loading and validating environment variables using [Zod
 ## Installation
 
 ```bash
-npm install @arthur-lobo/zod-env
+bun add @arthur-lobo/zod-env zod
+# or
+npm install @arthur-lobo/zod-env zod
 ```
+
+`zod` is a peer dependency, so it must be installed alongside the library.
 
 ## Description
 
